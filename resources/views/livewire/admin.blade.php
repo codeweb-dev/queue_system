@@ -89,7 +89,7 @@ $inquiry_type = [
         </x-modal>
 
         <!-- EDIT STATUS MODAL -->
-        <x-modal wire:model="modalEditStatus" title="Change Queue Status">
+        <x-modal wire:model.defer="modalEditStatus" title="Change Queue Status">
             <div class="mb-5">Are you sure you want to change the status to "Approve"?</div>
             <x-slot:actions>
                 <x-button label="Cancel" @click="$wire.modalEditStatus = false" />
@@ -98,7 +98,7 @@ $inquiry_type = [
         </x-modal>
 
         <!-- EDIT STATUS MODAL -->
-        <x-modal wire:model="modalEditStatusApprove" title="Change Queue Status">
+        <x-modal wire:model.defer="modalEditStatusApprove" title="Change Queue Status">
             <div>Are you sure you want to change the status to "Process"?</div>
             <div class="mb-5">Current Window : @foreach ($users as $user)
                 <span class="font-bold">{{ $user->id }}</span>

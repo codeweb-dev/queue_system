@@ -13,7 +13,6 @@ use Livewire\Attributes\Validate;
 class QueueForm extends Component
 {
     public bool $modal = false;
-    #[Validate('min:4', message: 'Pin should be 4 digits.')]
     public string $pin = '';
 
     public $full_name = '';
@@ -46,7 +45,9 @@ class QueueForm extends Component
         $queueId = session('queue_id'); // Retrieve queue_id from session
 
         if ($queueId) {
-            $this->currentServing = Queue::where('id', $queueId)->first();
+            $this->currentServing = Queue::where('id', $queueId)
+                ->whereIn('status', ['process', 'approve']) // Only fetch if status is 'process' or 'approve'
+                ->first();
         }
     }
 
@@ -81,7 +82,9 @@ class QueueForm extends Component
 
     public function checkPin()
     {
-        $this->validate();
+        $this->validate([
+            'pin' => 'required|digits:4'
+        ]);
 
         if ($this->pin === '2025') {
             return redirect()->to('/admin');

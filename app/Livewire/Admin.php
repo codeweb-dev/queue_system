@@ -89,11 +89,11 @@ class Admin extends Component
             $queue->status = 'approve'; // Update the status to 'approve'
             $queue->save();
             $this->success("Queue #{$this->userIdToUpdate} status updated to 'Process'.", position: 'toast-bottom');
-            $this->modalEditStatusApprove = false;
         } else {
             $this->error("Queue #{$this->userIdToUpdate} not found.", position: 'toast-bottom');
         }
 
+        $this->modalEditStatusApprove = false;
         $this->refreshUsers(); // Refresh the users list
     }
 
