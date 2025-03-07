@@ -1,0 +1,1 @@
+<p>Hello {{ $queue->full_name }} you are in queue now</p>
